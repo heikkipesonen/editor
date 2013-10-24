@@ -69,6 +69,12 @@ var builder = {
 
 		this.container = $(container);
 		this.container.append(this.panes.window).append(this.panes.toolbar);
+
+		var c = this.presentation.add();
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+
 	}
 }
 

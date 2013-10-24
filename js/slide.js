@@ -58,7 +58,7 @@ slide.prototype = {
                 me.remove();
             },
             edit:function(){
-
+                me.fire('edit');
             }
         }
 

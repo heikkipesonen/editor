@@ -48,9 +48,19 @@ presentation.prototype = {
 		return this._element;
 	},
 	add:function(){
-		var c = new category(this);
+		var c = new category(this),
+			me = this;
+
 		this._categories.push( c );
 		this._categorylist.append( c.getElement() );
+		
+		c.on('remove',function(){			
+			me.remove(this);
+		});
+
+		c.on('edit',function(e){
+			console.log(e);
+		})
 		return c;
 	},
 	remove:function(category){

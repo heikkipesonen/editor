@@ -17,6 +17,24 @@
 		margin: 5px;		
 		margin-bottom: 45px;
 		background-color: $slide;
+		
+		background-size: 20%;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+
+			&.video{
+				background-image: url(../img/video.png);
+			}
+			
+			&.form{
+				background-image: url(../img/form.png);
+			}
+
+			&.col1, &.col2, &.col3{
+				background-image: url(../img/paper.png);
+			}
+
+
 
 		&:hover{
 			>.delete, >.edit{
@@ -51,7 +69,7 @@
 				text-align:center;
 
 				&:hover{
-					background-color: darken($slide-info, 5%);
+					background-color: darken($slide-info, 10%);
 				}
 			}
 		}

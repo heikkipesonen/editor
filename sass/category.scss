@@ -1,8 +1,8 @@
 .category{
 	@extend .animate;
 	position: relative;	
-	width:94%;
-	margin:3%;
+	width:98%;
+	margin:1%;
 	height: auto;
 	min-width: 700px;
 	/*border: 2px dashed rgba(255,255,255,0.3);*/
@@ -10,7 +10,7 @@
 	min-height: 172px;
 	background-color: $category-bg;
 
-	.title{
+	.title{			
 		vertical-align: top;
 		position:absolute;
 		float:left;
@@ -32,6 +32,10 @@
 		}
 	}
 
+	>.edit{
+		left:10%;
+	}
+
 	&:hover{
 
 		>.delete, >.edit{
@@ -50,21 +54,17 @@
 		}
 	}
 
-	.slide-scroller{
+	.slides{
 		@extend .animate;
 		position:relative;
 		display:inline-block;
 		width: 77%;
 		left: 23%;
 
-		.slides{
-			position:relative;
-
-			.before{
-				display:inline-block;
-				display: none;
-				width:10px;
-			}
+		.before{
+			display:inline-block;
+			display: none;
+			width:10px;
 		}
 	}
 }
