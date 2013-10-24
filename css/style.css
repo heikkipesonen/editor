@@ -175,8 +175,8 @@ ul.toolbar {
   z-index: 1;
   position: absolute;
   left: 64px;
+  right: 0px;
   top: 0px;
-  width: calc(100% - 64px);
   height: 100%;
   overflow-y: scroll;
   background-color: #373853;
@@ -207,7 +207,7 @@ ul.toolbar {
       content: " ";
       position: absolute;
       left: 50%;
-      bottom: -16px;
+      bottom: -15px;
       margin-left: -16px;
       border-top: 16px solid white;
       border-left: 16px solid transparent;
@@ -221,7 +221,7 @@ ul.toolbar {
       content: " ";
       position: absolute;
       left: 50%;
-      top: -16px;
+      top: -15px;
       margin-left: -16px;
       border-bottom: 16px solid white;
       border-left: 16px solid transparent;
@@ -311,6 +311,7 @@ ul.toolbar {
   .slide .info {
     position: absolute;
     left: 0px;
+    width: 100%;
     bottom: -40px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.7); }
@@ -327,3 +328,45 @@ ul.toolbar {
 /*
 }
 */
+#overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9; }
+
+#editor {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 10; }
+  #editor ul.toolbar {
+    position: absolute; }
+    #editor ul.toolbar li {
+      position: static; }
+  #editor .slides-container {
+    position: absolute;
+    bottom: 0px;
+    left: 64px;
+    right: 0px;
+    height: 180px;
+    overflow-x: scroll;
+    overflow-y: hidden; }
+    #editor .slides-container .slides {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      height: 100%; }
+      #editor .slides-container .slides .slide {
+        margin: 10px;
+        width: 150px;
+        height: 100px; }
+        #editor .slides-container .slides .slide .edit {
+          display: none; }
+          #editor .slides-container .slides .slide .edit:hover {
+            display: none; }

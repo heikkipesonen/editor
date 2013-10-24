@@ -21,7 +21,8 @@ function toolbar(parent,data){
 toolbar.prototype = {
 	_click:function(id){		
 		this.fire('click',id);
-
+		this.fire(id);
+		
 		if (this._submenus[id]){
 			this.hideSubmenu(id);
 			this._items[id].toggleClass('submenu-visible');	

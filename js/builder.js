@@ -63,17 +63,23 @@ var builder = {
 		this.presentation = new presentation();
 		this.panes.window = this.presentation.getElement();
 
-		this.panes.toolbar = this.toolbar.getElement();
-
-
-
 		this.container = $(container);
-		this.container.append(this.panes.window).append(this.panes.toolbar);
+		this.container.append(this.panes.window).append(this.toolbar.getElement());
 
 		var c = this.presentation.add();
 			c.add('col1');
 			c.add('video');
 			c.add('form');
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+		c.edit();
 
 	}
 }

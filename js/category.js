@@ -20,6 +20,21 @@ function category(presentation){
 }
 
 category.prototype = {
+	each:function(fn){
+		for (var i in this._slides){
+			fn.call(this._slides[i],i);
+		}
+	},
+	getWidth:function(){
+		var w = 0;
+		for (var i in this._slides){
+			w += this._slides[i].getWidth();
+		}
+		return w;
+	},
+	getSlides:function(){
+		return this._slides;
+	},
 	_init:function(){
 		var me = this;
 		// event listener functions
@@ -60,11 +75,18 @@ category.prototype = {
 		});
 
 		this._edit.click(function(){
-			me.fire('edit',me);
+			me.edit();
 		});
 
 		//this.on('change',this.setWidth);
-	},	
+	},
+	edit:function(slide){		
+		var e = new editor(this,slide),
+			me= this;
+
+		e.show();
+
+	},
 	getId:function(){
 		return this._id;
 	},
@@ -116,6 +138,12 @@ category.prototype = {
 		}
 		return false;
 	},
+	showSlides:function(){
+		var me = this;
+		this.each(function(){
+			me._slidecontainer.append(this.getElement());
+		});
+	},
 	add:function(type,before){
 		var me = this,
 			s = new slide(type, this);
@@ -128,7 +156,7 @@ category.prototype = {
 		});
 
 		s.on('edit',function(){
-			me.fire('edit',this);
+			me.edit(me,this);
 		});
 
 		this.fire('change','add',s);
