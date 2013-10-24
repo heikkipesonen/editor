@@ -1,0 +1,94 @@
+#wrapper{
+	font-family: 'Open Sans', sans-serif !important;
+	font-weight: 400 !important;
+	position: absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+	height: 100%;
+}
+
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #aaa;  
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #aaa;
+}
+
+
+input{
+	background: transparent;
+	text-transform: uppercase;
+	border: none;
+	font-size: 14pt;
+	color: #fff;
+	width: 80%;
+	margin-left: 10%;
+	padding: 10px;
+	font-family: inherit;
+	font-weight: 400 !important;
+
+	&:focus{
+		outline:none;
+	}
+}
+
+
+.button{
+	position:absolute;
+	width: 24px;
+	height: 24px;
+
+	opacity:0;
+	border-radius: 50%;
+	background-position: 50% 50%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-color: #fff;
+
+
+	z-index:10;
+	cursor:pointer;
+
+	@include prefix('transition-duration','0.2s');
+	@include prefix('box-shadow','0px 0px 20px 0px rgba(0,0,0,0.3)');
+}
+
+.edit{
+	@extend .button;
+	left: 50%;
+	top: 50%;
+	width: 48px;
+	height: 48px;
+
+	margin-left:-24px;
+	margin-top: -24px;
+
+	background-size: 80% 80%;
+	background-image: url('../img/pen.png');
+
+	&:hover{
+		background-color: rgba(200,255,200,0.8);
+	}
+}
+
+.delete{			
+	@extend .button;
+	right: -6px;
+	top: -6px;
+	background-image: url('../img/close.png');
+
+	&:hover{
+		background-color: rgba(255,200,200,0.8);
+	}
+}
+
+.animate{
+	@include prefix('transition-duration','0.2s');
+}
+
+.shadow{
+	@include prefix('box-shadow','0px 0px 20px 0px rgba(0,0,0,0.3)' );
+}

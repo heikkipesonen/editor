@@ -1,0 +1,66 @@
+ul.toolbar{
+	@extend .animate;
+	@extend .shadow;
+
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index:2;
+
+	width: 64px;
+	height: 100%;
+
+	background-color: $menu-bg;
+	color: #eee;	
+	overflow: visible;
+
+	li{
+		@extend .menu-button;
+
+		ul.submenu{
+			display:block;
+			overflow:hidden;
+			z-index:10;
+			width:0px;
+			top:0px;
+			left:64px;
+		}
+
+		&:hover{
+			overflow:visible;
+			ul.submenu{	
+				width: 64px;
+				display:block;
+			}
+		}
+
+		&.submenu-visible{
+			ul.submenu{				
+				left: 0px;
+				width: 64px;
+				display:block;
+			}		
+		}
+	}
+}
+
+.menu-button{
+	position:relative;
+	height: 64px;
+	width: 64px;
+	text-align:center;
+	background-color: lighten($menu-bg,5%);
+	
+	&:hover{
+		background-color: lighten($menu-bg,10%);
+	}	
+
+	img{			
+		margin-top:20%;
+		height: 60%;
+	}
+	
+	&:not(:first-child){
+		margin-top: 2px;
+	}	
+}
