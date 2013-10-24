@@ -16,8 +16,28 @@
 	height:100%;	
 	z-index:10;
 
-	ul.toolbar{
+	#slidewindow{
 		position:absolute;
+		left:64px;
+		right:0px;
+		top:0px;
+		bottom:200px;
+		background: #eee;
+
+		.slide{
+			position:absolute;
+			top: 10%;
+			bottom: 10%;
+			right:10%;
+			left:10%;
+			width:auto;
+			height:auto;
+			margin:0;
+			padding:0;
+		}
+	}
+
+	ul.toolbar{
 		li{
 			position: static;
 

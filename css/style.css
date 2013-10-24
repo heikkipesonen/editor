@@ -254,6 +254,7 @@ ul.toolbar {
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent; }
   .category > .edit {
+    display: none;
     left: 10%; }
   .category:hover > .delete, .category:hover > .edit {
     opacity: 1; }
@@ -345,10 +346,25 @@ ul.toolbar {
   width: 100%;
   height: 100%;
   z-index: 10; }
-  #editor ul.toolbar {
-    position: absolute; }
-    #editor ul.toolbar li {
-      position: static; }
+  #editor #slidewindow {
+    position: absolute;
+    left: 64px;
+    right: 0px;
+    top: 0px;
+    bottom: 200px;
+    background: #eee; }
+    #editor #slidewindow .slide {
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      right: 10%;
+      left: 10%;
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0; }
+  #editor ul.toolbar li {
+    position: static; }
   #editor .slides-container {
     position: absolute;
     bottom: 0px;

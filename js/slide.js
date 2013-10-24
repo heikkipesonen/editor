@@ -1,14 +1,24 @@
 function slide(type,parent){
     this._events = new events(this);
 
+    this._slide = $('<div class="slide" draggable="true"></div>');
+    this._info = $('<div class="info"><input type="text" class="name-input"/></div>');
+    this._delete = $('<div class="delete"></div>');
+    this._edit = $('<div class="edit"></div>');
+    
+    if (typeof(type) == 'object'){
+        this.load(type);
+    }
+
     this._parent = parent || false;    
     this._type = type;
     this._id = getId();
+    this._info.find('input').val(this._id);
 
-    this._slide = $('<div class="slide '+type+' " draggable="true"></div>');
-    this._info = $('<div class="info"><input type="text" class="name-input" placeholder="'+this._id+'"/></div>');
-    this._delete = $('<div class="delete"></div>');
-    this._edit = $('<div class="edit"></div>');
+
+    if (this._type){
+        this._slide.addClass(this._type);
+    }
 
     this._slide.attr('id',this._id);
 
@@ -118,9 +128,8 @@ slide.prototype = {
     getData:function(){
         var d = {
             id:this.getId(),
-            type:'slide',
-            class: this._type,
-            columns:this._columns,
+            type: this._type,
+            item:'slide',
             content:this._content
         };
 
@@ -139,12 +148,14 @@ slide.prototype = {
 
         return d;
     },
-    load:function(data){
+    load:function(data){        
         this._id = data.id;
+        this._type = data.type;   
+
+        this._slide.addClass(this._type);
         this._slide.attr('id',this._id);
-        this._type = data.class;
-        this.setCols(data.columns);
 /*
+        this.setCols(data.columns);
         for (var i in data.children){
             if (data.children[i].type == 'slide'){
                 this.addChild(data.children[i].class,false,data.children[i]);
