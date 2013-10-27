@@ -16,12 +16,17 @@
 	height:100%;	
 	z-index:10;
 
+	.slide{
+		background: transparent;
+		border: 2px dashed #777;
+	}
+
 	#slidewindow{
 		position:absolute;
-		left:64px;
+		left:192px;
 		right:0px;
 		top:0px;
-		bottom:200px;
+		bottom:104px;
 		background: #eee;
 
 		.slide{
@@ -34,6 +39,7 @@
 			height:auto;
 			margin:0;
 			padding:0;
+
 		}
 	}
 
@@ -47,9 +53,9 @@
 	.slides-container{
 		position:absolute;
 		bottom:0px;
-		left:64px;
+		left:192px;
 		right:0px;
-		height:180px;
+		height:104px;
 		overflow-x: scroll;
 		overflow-y: hidden;
 
@@ -60,9 +66,15 @@
 			height:100%;
 
 			.slide{
+				@extend .animate;
 				margin:10px;
-				width: 150px;
-				height: 100px;
+				width: 96px;
+				height: 64px;
+
+				&:hover{
+					opacity:0.7;
+					cursor: pointer;
+				}
 
 				.edit{
 					display:none;

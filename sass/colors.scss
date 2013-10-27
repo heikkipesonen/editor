@@ -2,10 +2,15 @@ $slide-info	: rgba(255,255,255,0.7);
 
 $category-bg 	: #fff;
 
-$slide 		: #AFC3EC;
+$slide 		: #5A7FAF;
 $presentation_bg : #373853;
 $header_bg :#fff;
-$menu-bg : #2C2C2C;
+
+$toolbar-bg : #1D1D1D;
+$toolbar-text: #eee;
+$toolbar-button-color: 	lighten($toolbar-bg, 5%);
+$toolbar-button-hover:#5A7FAF;
 
 
 $category-title : #2C2C2C;
+

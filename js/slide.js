@@ -1,18 +1,19 @@
 function slide(type,parent){
     this._events = new events(this);
 
-    this._slide = $('<div class="slide" draggable="true"></div>');
-    this._info = $('<div class="info"><input type="text" class="name-input"/></div>');
-    this._delete = $('<div class="delete"></div>');
-    this._edit = $('<div class="edit"></div>');
+    this._slide = $('<div class="slide"></div>');
+        this._info = $('<div class="info"><input type="text" class="name-input"/></div>');
+        this._delete = $('<div class="delete"></div>');
+        this._edit = $('<div class="edit"></div>');
     
     if (typeof(type) == 'object'){
         this.load(type);
+    } else {
+        this._type = type;
+        this._id = getId();        
     }
 
     this._parent = parent || false;    
-    this._type = type;
-    this._id = getId();
     this._info.find('input').val(this._id);
 
 
@@ -21,8 +22,8 @@ function slide(type,parent){
     }
 
     this._slide.attr('id',this._id);
-
     this._slide.append(this._delete).append(this._edit).append(this._info);
+    
     this._children = [];
     this._content = [];
 
@@ -33,26 +34,8 @@ slide.prototype = {
     _init:function(){
         var me = this;
 
-        this._fn = {
-            dragstart:function(e){
-                e.stopPropagation();
-                
-                e.dataTransfer.setData('type', 'slide');
-                e.dataTransfer.setData('action', 'add');
-                e.dataTransfer.setData('slide_type',me._type);
-                e.dataTransfer.setData('slide_cols',me._columns);
-                e.dataTransfer.setData('id',me._id);                
-            },
-            delete:function(){
-                me.remove();
-            },
-            edit:function(){
-                me.fire('edit');
-            }
-        }
-
-        this._delete.click(this._fn.delete);
-        this._edit.click(this._fn.edit);
+        this._delete.click(function(){me.remove()});
+        this._edit.click(function(){me.fire('edit')});
     },    
     getWidth:function(){
         return this._slide.outerWidth(true);
@@ -152,16 +135,11 @@ slide.prototype = {
         this._id = data.id;
         this._type = data.type;   
 
-        this._slide.addClass(this._type);
-        this._slide.attr('id',this._id);
-/*
-        this.setCols(data.columns);
         for (var i in data.children){
             if (data.children[i].type == 'slide'){
                 this.addChild(data.children[i].class,false,data.children[i]);
             }
         }
-*/
     },
     remove:function(){
         this.fire('remove',this);
@@ -172,38 +150,20 @@ slide.prototype = {
         //this._container[0].removeEventListener('dragstart',this._fn.dragstart);
         //this._container.remove();
     },
-    /*
-    addChild:function(type,columns,data){
+    addChild:function(type){
         var sl = new slide(type,this);
         this._children.push(sl);
-        this._container.append(sl.getElement());
-
-        if (columns){
-            sl.setCols(columns);
-        }
-
-        if (data){
-            sl.load(data);
-        }
-
-        var me = this;
         
-        sl.on('remove',function(){
-            me._removeChild(this);
-        });
-
-        sl.getElement().addClass('child');
         this.fire('add',sl);
         this.fire('change','add');
     },
-    _removeChild:function(child){
+    removeChild:function(child){
         for (var i in this._children){
             if (this._children[i] == child){
                 delete this._children[i];
             }
         }
     },
-    */
     getElement:function(){
         return this._slide;
     },

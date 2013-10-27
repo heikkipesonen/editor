@@ -1,3 +1,6 @@
+$menu-width: 96px;
+$menu-wide: 192px;
+
 ul.toolbar{
 	@extend .animate;
 	@extend .shadow;
@@ -7,12 +10,89 @@ ul.toolbar{
 	left:0px;
 	z-index:2;
 
-	width: 64px;
+	width: $menu-width;
 	height: 100%;
 
-	background-color: $menu-bg;
-	color: #eee;	
+	background-color: $toolbar-bg;
+	color: $toolbar-text;	
 	overflow: visible;
+
+
+	.header{
+		position: relative;
+		height:96px;
+		width:96px;
+	
+		h3{
+			position:absolute;
+			text-align: center;
+			width: 100%;
+			text-transform: uppercase;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			left: 0px;
+			top: 50%;
+			margin-top: -5pt;
+		}
+
+	}
+
+	&.wide{
+		width: $menu-wide;
+
+		.header{
+			width: $menu-wide;			
+		}
+
+		li{
+			position:relative !important;
+			width:100%;
+			text-align:left;
+			
+			img{
+				position:absolute;
+				top:35%;
+				left: 20px;
+				margin:0;
+			}
+
+			h4{
+				position:absolute;
+				text-transform:uppercase;
+				left: 70px;
+				width: $menu-wide - 70px - 10px;
+				top:40px;
+				font-size:10pt;
+				margin-top:-6pt;
+			}
+
+			p{
+				font-size:9pt;
+				position:absolute;
+				width:110px;
+				left: 70px;
+				top:50px;
+				color: darken($toolbar-text,20%);
+			}
+
+			ul.submenu{		
+				left:$menu-wide;
+			}
+
+			&.submenu-visible{
+				ul.submenu{		
+					width:$menu-wide;
+				}
+			}
+
+			&:hover{
+				ul.submenu{
+					width:192px;
+				}
+			}
+		}
+	}
 
 	li{
 		@extend .menu-button;
@@ -23,13 +103,13 @@ ul.toolbar{
 			z-index:10;
 			width:0px;
 			top:0px;
-			left:64px;
+			left:$menu-width;
 		}
 
 		&:hover{
 			overflow:visible;
 			ul.submenu{	
-				width: 64px;
+				width: $menu-width;
 				display:block;
 			}
 		}
@@ -37,7 +117,7 @@ ul.toolbar{
 		&.submenu-visible{
 			ul.submenu{				
 				left: 0px;
-				width: 64px;
+				width: $menu-width;
 				display:block;
 			}		
 		}
@@ -45,19 +125,22 @@ ul.toolbar{
 }
 
 .menu-button{
+	@extend .animate;
+
+	cursor:pointer;
 	position:relative;
-	height: 64px;
-	width: 64px;
+	height: $menu-width;
+	width: $menu-width;
 	text-align:center;
-	background-color: lighten($menu-bg,5%);
+	background-color: $toolbar-button-color;
 	
 	&:hover{
-		background-color: lighten($menu-bg,10%);
+		background-color: $toolbar-button-hover;
 	}	
 
 	img{			
-		margin-top:20%;
-		height: 60%;
+		margin-top:35%;
+		height: 30%;
 	}
 	
 	&:not(:first-child){

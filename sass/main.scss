@@ -8,6 +8,11 @@
 	height: 100%;
 }
 
+h1,h2,h3,h4,h5,h6,p,li,ul,div,input,textarea,fieldset{
+	font-family: 'Open Sans', sans-serif !important;
+	font-weight: 400;	
+}
+
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #aaa;  
@@ -19,6 +24,7 @@ input:-moz-placeholder, textarea:-moz-placeholder {
 
 
 input{
+	@extend .animate;
 	background: transparent;
 	text-transform: uppercase;
 	border: none;
@@ -33,6 +39,10 @@ input{
 	&:focus{
 		outline:none;
 	}
+
+	&:hover{
+		background-color: rgba(0,0,0,0.1);
+	}
 }
 
 
@@ -46,14 +56,12 @@ input{
 	background-position: 50% 50%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-color: #fff;
 
 
 	z-index:10;
 	cursor:pointer;
 
 	@include prefix('transition-duration','0.2s');
-	@include prefix('box-shadow','0px 0px 20px 0px rgba(0,0,0,0.3)');
 }
 
 .edit{
@@ -79,9 +87,10 @@ input{
 	right: -6px;
 	top: -6px;
 	background-image: url('../img/close.png');
+	
 
 	&:hover{
-		background-color: rgba(255,200,200,0.8);
+		background-color: #fff;
 	}
 }
 

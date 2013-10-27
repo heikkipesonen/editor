@@ -54,6 +54,10 @@ blockquote, q {
   width: 100%;
   height: 100%; }
 
+h1, h2, h3, h4, h5, h6, p, li, ul, div, input, textarea, fieldset {
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: 400; }
+
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #aaa; }
 
@@ -73,6 +77,8 @@ input {
   font-weight: 400 !important; }
   input:focus {
     outline: none; }
+  input:hover {
+    background-color: rgba(0, 0, 0, 0.1); }
 
 .button, .edit, .delete {
   position: absolute;
@@ -83,19 +89,13 @@ input {
   background-position: 50% 50%;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-color: #fff;
   z-index: 10;
   cursor: pointer;
   -webkit-transition-duration: 0.2s;
   -moz-transition-duration: 0.2s;
   -ms-transition-duration: 0.2s;
   -o-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
-  -ms-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
-  -o-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3); }
+  transition-duration: 0.2s; }
 
 .edit {
   left: 50%;
@@ -114,9 +114,9 @@ input {
   top: -6px;
   background-image: url("../img/close.png"); }
   .delete:hover {
-    background-color: rgba(255, 200, 200, 0.8); }
+    background-color: #fff; }
 
-.animate, ul.toolbar, .category, .category .slides, .slide .info input {
+.animate, input, ul.toolbar, .menu-button, ul.toolbar li, .category, .category .slides, .slide .info input, #editor .slides-container .slides .slide {
   -webkit-transition-duration: 0.2s;
   -moz-transition-duration: 0.2s;
   -ms-transition-duration: 0.2s;
@@ -135,46 +135,96 @@ ul.toolbar {
   top: 0px;
   left: 0px;
   z-index: 2;
-  width: 64px;
+  width: 96px;
   height: 100%;
-  background-color: #2c2c2c;
-  color: #eee;
+  background-color: #1d1d1d;
+  color: #eeeeee;
   overflow: visible; }
+  ul.toolbar .header {
+    position: relative;
+    height: 96px;
+    width: 96px; }
+    ul.toolbar .header h3 {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      left: 0px;
+      top: 50%;
+      margin-top: -5pt; }
+  ul.toolbar.wide {
+    width: 192px; }
+    ul.toolbar.wide .header {
+      width: 192px; }
+    ul.toolbar.wide li {
+      position: relative !important;
+      width: 100%;
+      text-align: left; }
+      ul.toolbar.wide li img {
+        position: absolute;
+        top: 35%;
+        left: 20px;
+        margin: 0; }
+      ul.toolbar.wide li h4 {
+        position: absolute;
+        text-transform: uppercase;
+        left: 70px;
+        width: 112px;
+        top: 40px;
+        font-size: 10pt;
+        margin-top: -6pt; }
+      ul.toolbar.wide li p {
+        font-size: 9pt;
+        position: absolute;
+        width: 110px;
+        left: 70px;
+        top: 50px;
+        color: #bbbbbb; }
+      ul.toolbar.wide li ul.submenu {
+        left: 192px; }
+      ul.toolbar.wide li.submenu-visible ul.submenu {
+        width: 192px; }
+      ul.toolbar.wide li:hover ul.submenu {
+        width: 192px; }
   ul.toolbar li ul.submenu {
     display: block;
     overflow: hidden;
     z-index: 10;
     width: 0px;
     top: 0px;
-    left: 64px; }
+    left: 96px; }
   ul.toolbar li:hover {
     overflow: visible; }
     ul.toolbar li:hover ul.submenu {
-      width: 64px;
+      width: 96px;
       display: block; }
   ul.toolbar li.submenu-visible ul.submenu {
     left: 0px;
-    width: 64px;
+    width: 96px;
     display: block; }
 
 .menu-button, ul.toolbar li {
+  cursor: pointer;
   position: relative;
-  height: 64px;
-  width: 64px;
+  height: 96px;
+  width: 96px;
   text-align: center;
-  background-color: #393939; }
+  background-color: #2a2a2a; }
   .menu-button:hover, ul.toolbar li:hover {
-    background-color: #464646; }
+    background-color: #5a7faf; }
   .menu-button img, ul.toolbar li img {
-    margin-top: 20%;
-    height: 60%; }
+    margin-top: 35%;
+    height: 30%; }
   .menu-button:not(:first-child), ul.toolbar li:not(:first-child) {
     margin-top: 2px; }
 
 .presentation {
   z-index: 1;
   position: absolute;
-  left: 64px;
+  left: 96px;
   right: 0px;
   top: 0px;
   height: 100%;
@@ -291,7 +341,7 @@ ul.toolbar {
   vertical-align: top;
   margin: 5px;
   margin-bottom: 45px;
-  background-color: #afc3ec;
+  background-color: #5a7faf;
   background-size: 20%;
   background-position: 50% 50%;
   background-repeat: no-repeat; }
@@ -346,12 +396,15 @@ ul.toolbar {
   width: 100%;
   height: 100%;
   z-index: 10; }
+  #editor .slide {
+    background: transparent;
+    border: 2px dashed #777; }
   #editor #slidewindow {
     position: absolute;
-    left: 64px;
+    left: 192px;
     right: 0px;
     top: 0px;
-    bottom: 200px;
+    bottom: 104px;
     background: #eee; }
     #editor #slidewindow .slide {
       position: absolute;
@@ -368,9 +421,9 @@ ul.toolbar {
   #editor .slides-container {
     position: absolute;
     bottom: 0px;
-    left: 64px;
+    left: 192px;
     right: 0px;
-    height: 180px;
+    height: 104px;
     overflow-x: scroll;
     overflow-y: hidden; }
     #editor .slides-container .slides {
@@ -380,8 +433,11 @@ ul.toolbar {
       height: 100%; }
       #editor .slides-container .slides .slide {
         margin: 10px;
-        width: 150px;
-        height: 100px; }
+        width: 96px;
+        height: 64px; }
+        #editor .slides-container .slides .slide:hover {
+          opacity: 0.7;
+          cursor: pointer; }
         #editor .slides-container .slides .slide .edit {
           display: none; }
           #editor .slides-container .slides .slide .edit:hover {
