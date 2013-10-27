@@ -7,14 +7,7 @@ function presentation(){
 		name:false		
 	}
 
-	this._element = getTemplate('presentation');
-		/*
-		this._header = this._element.find('.header');
-		this._nameinput =this._header.find('input');
-		this._categorylist = this._element.find('.categories');
-		this._footer = this._element.find('.footer');
-		*/
-
+	this._element = new getTemplate('presentation');
 	this._init();
 }
 

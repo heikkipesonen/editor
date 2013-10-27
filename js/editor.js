@@ -7,7 +7,7 @@
 */
 function editor(category,slide){
 	this._events = new events(this);
-	
+	/*
 	this._overlay =$('<div id="overlay"></div>'); // background overlay, if editor smaller than window..
 	this._element =$('<div id="editor"></div>'); // main element
 	this._slidewindow = $('<div id="slidewindow"><div class="slide"></div></div>'); // main slide edit container
@@ -16,6 +16,9 @@ function editor(category,slide){
 	this._slidelist_container = $('<div class="slides-container"></div>');
 	this._slidelist = $('<div class="slides"></div>');
 	this._properties = $('<div class="properties"></div>');
+	*/
+
+	this._element = getTemplate('editor');
 
 	this._category = category;	
 	this._init();
@@ -117,47 +120,38 @@ editor.prototype = {
 		};
 
 		// instantiate new toolbar and load tools
-		this._toolbar = new toolbar(this,this._tools);	
+		this._toolbar = new toolbar(this._tools);	
 	
-		// attach elements to one another.
-		this._element
-					.append(this._toolbar.getElement())
-					.append(this._slidewindow)
-					.append(this._slidelist_container
-							.append(this._slidelist));		
-		
 		this._slides = []; // slides contained in this editor
 
 		// loop through category slides, attach previes into slide list
 		this._category.each(function(){
-			me._slidelist.append( '<div class="slide preview" id="'+this._id+'"></div>');
+			me._element.slides.find('.list').append( '<div class="slide preview" id="'+this._id+'"></div>');
 		});
 
 		// if exit button is clicked at the toolbar
 		this._toolbar.on('close',function(){
 			me.close();
 		});
+
+		this._element.container.append(this._toolbar.getElement());
 	},
 	editSlide:function(slide){
 
 	},
 	getSlidesWidth:function(){
 		var w = 0;
-		this._slidelist.find('.slide').each(function(){
+		this._element.slides.find('.slide').each(function(){
 			w += $(this).outerWidth(true);
 		});
 		return w;		
 	},
-	show:function(){
-		$('body').append(this._overlay);
-		$('body').append(this._element);
-
-
-		this._slidelist.css('width',this.getSlidesWidth()+10);
+	show:function(){		
+		$('body').append(this._element.container);
+		this._element.slides.find('.list').css('width',this.getSlidesWidth()+10);
 	},
 	close:function(){
-		this._overlay.remove();
-		this._element.remove();
+		this._element.container.remove();
 		this.fire('close');
 	}
 }

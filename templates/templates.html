@@ -41,6 +41,24 @@
 	
 -->
 
+<div template="overlay" id="overlay"></div>
+
+<div template="editor" id="editor">	
+
+
+	<div class="slides">
+		<div class="list"></div>		
+	</div>
+
+	<div id="slidewindow" class="slidewindow">
+		<div class="slide"></div>
+	</div>
+
+
+	<div class="properties"></div>
+</div>
+
+
 <div template="presentation" class="presentation" droppable="true">			
 	<div class="header">
 		<div class="slide"></div>	
@@ -61,12 +79,18 @@
 </div>
 
 
-<div template="category" type="category" class="category" draggable="true">
+<div template="category" class="category" draggable="true">
 	<div class="delete"></div>
 	<div class="edit"></div>
 	<div class="title"><input type="text" class="title-input" placeholder="category"/></div>		
 	<div class="slidecontainer"></div>
 </div>
 
+<div template="inputfield" class="input">
+	<label class="label" for=""></label>
+	<input class="field" />
+</div>
 
-
+<div template="inputset" class="inputset">
+	<div class="inputs"></div>
+</div>

@@ -2,7 +2,6 @@ $menu-width: 96px;
 $menu-wide: 192px;
 
 ul.toolbar{
-	@extend .animate;
 	@extend .shadow;
 
 	position:fixed;

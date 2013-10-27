@@ -31,7 +31,12 @@
 			border-bottom: 16px solid transparent;
 		}
 
+		>input{
+			color: invert($category-title);
+		}
 	}
+
+
 
 	>.edit{
 		display:none;

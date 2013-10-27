@@ -4,7 +4,6 @@ function category(presentation){
 	this._id = getId();
 
 	this._element = getTemplate('category');
-console.log(this._element)
 	this._slides = [];
 	this._name = false;
 	this._init();
@@ -47,12 +46,12 @@ category.prototype = {
 				e.dataTransfer.setData('type','category');
 			},
 			dragover:function(){
-				if (!me._element.hasClass('dragover')){
-					me._element.addClass('dragover');
+				if (!me._element.container.hasClass('dragover')){
+					me._element.container.addClass('dragover');
 				}
 			},
 			dragleave:function(){
-				me._element.removeClass('dragover');
+				me._element.container.removeClass('dragover');
 			},
 		}
 

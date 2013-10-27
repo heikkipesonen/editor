@@ -27,7 +27,13 @@ function getTemplate(selector){
     }
     
     t.children().each(function(){
-        var fclass = $(this).attr('class').split(' ')[0];
+        var fclass = '';
+
+        if ($(this).attr('id')){
+            fclass = $(this).attr('id');
+        } else {
+            fclass = $(this).attr('class').split(' ')[0];
+        }
         e[fclass] = $(this);
     })
 

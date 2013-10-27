@@ -2,16 +2,6 @@ function slide(type,parent){
     this._events = new events(this);
 
     this._slide = getTemplate('slide');
-    /*
-        this._slide.info = this._slide.container.find('.info');
-        this._slide.delete = this._slide.container.find('.delete');
-        this._slide.edit = this._slide.container.find('.edit');
-    this._slide.container = $('<div class="slide"></div>');
-        this._slide.info = $('<div class="info"><input type="text" class="name-input"/></div>');
-        this._slide.delete = $('<div class="delete"></div>');
-        this._slide.edit = $('<div class="edit"></div>');
-    */
-
 
     if (typeof(type) == 'object'){
         this.load(type);
@@ -29,8 +19,7 @@ function slide(type,parent){
     }
 
     this._slide.container.attr('id',this._id);
-    //this._slide.container.append(this._slide.delete).append(this._slide.edit).append(this._slide.info);
-    
+
     this._children = [];
     this._content = [];
 

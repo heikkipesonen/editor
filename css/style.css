@@ -116,7 +116,7 @@ input {
   .delete:hover {
     background-color: #fff; }
 
-.animate, input, ul.toolbar, .menu-button, ul.toolbar li, .category, .category .slidecontainer, .slide .info input, #editor .slides-container .slides .slide {
+.animate, input, .menu-button, ul.toolbar li, .category, .category .slidecontainer, .slide .info input, #editor .slides .list .slide {
   -webkit-transition-duration: 0.2s;
   -moz-transition-duration: 0.2s;
   -ms-transition-duration: 0.2s;
@@ -137,7 +137,7 @@ ul.toolbar {
   z-index: 2;
   width: 96px;
   height: 100%;
-  background-color: #1d1d1d;
+  background-color: #1e2124;
   color: #eeeeee;
   overflow: visible; }
   ul.toolbar .header {
@@ -212,7 +212,7 @@ ul.toolbar {
   height: 96px;
   width: 96px;
   text-align: center;
-  background-color: #2a2a2a; }
+  background-color: #2a2e32; }
   .menu-button:hover, ul.toolbar li:hover {
     background-color: #5a7faf; }
   .menu-button img, ul.toolbar li img {
@@ -229,7 +229,8 @@ ul.toolbar {
   top: 0px;
   height: 100%;
   overflow-y: scroll;
-  background-color: white; }
+  background-color: white;
+  background-image: url("../img/notebook.png"); }
   .presentation .categories {
     z-index: 0;
     position: relative;
@@ -239,7 +240,7 @@ ul.toolbar {
   .presentation .header {
     position: relative;
     height: 20%;
-    background-color: #d8d8d8; }
+    background-color: white; }
     .presentation .header input {
       position: absolute;
       width: 50%;
@@ -258,13 +259,13 @@ ul.toolbar {
       left: 50%;
       bottom: -15px;
       margin-left: -16px;
-      border-top: 16px solid #d8d8d8;
+      border-top: 16px solid white;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent; }
   .presentation .footer {
     position: relative;
     height: 20%;
-    background-color: #d8d8d8; }
+    background-color: white; }
     .presentation .footer:after {
       z-index: 1;
       content: " ";
@@ -272,7 +273,7 @@ ul.toolbar {
       left: 50%;
       top: -15px;
       margin-left: -16px;
-      border-bottom: 16px solid #d8d8d8;
+      border-bottom: 16px solid white;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent; }
 
@@ -292,16 +293,18 @@ ul.toolbar {
     float: left;
     height: 100%;
     width: 20%;
-    background-color: #d8d8d8; }
+    background-color: #f7f7f7; }
     .category .title:after {
       content: " ";
       position: absolute;
       right: -16px;
       top: 50%;
       margin-top: -16px;
-      border-left: 16px solid #d8d8d8;
+      border-left: 16px solid #f7f7f7;
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent; }
+    .category .title > input {
+      color: #080808; }
   .category > .edit {
     display: none;
     left: 10%; }
@@ -340,7 +343,7 @@ ul.toolbar {
   vertical-align: top;
   margin: 5px;
   margin-bottom: 45px;
-  background-color: #5a7faf;
+  background-color: #1e2124;
   background-size: 20%;
   background-position: 50% 50%;
   background-repeat: no-repeat; }
@@ -378,33 +381,23 @@ ul.toolbar {
 /*
 }
 */
-#overlay {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 9; }
-
 #editor {
   position: absolute;
   left: 0%;
   top: 0%;
-  background-color: #fff;
   width: 100%;
   height: 100%;
-  z-index: 10; }
+  z-index: 10;
+  background-image: url("../img/brushed.png"); }
   #editor .slide {
-    background: transparent;
-    border: 2px dashed #777; }
+    background: #fff;
+    border: 1px dashed #2d2d2d; }
   #editor #slidewindow {
     position: absolute;
     left: 192px;
     right: 0px;
     top: 0px;
-    bottom: 104px;
-    background: #eee; }
+    bottom: 104px; }
     #editor #slidewindow .slide {
       position: absolute;
       top: 10%;
@@ -417,7 +410,7 @@ ul.toolbar {
       padding: 0; }
   #editor ul.toolbar li {
     position: static; }
-  #editor .slides-container {
+  #editor .slides {
     position: absolute;
     bottom: 0px;
     left: 192px;
@@ -425,19 +418,19 @@ ul.toolbar {
     height: 104px;
     overflow-x: scroll;
     overflow-y: hidden; }
-    #editor .slides-container .slides {
+    #editor .slides .list {
       position: relative;
       left: 0px;
       top: 0px;
       height: 100%; }
-      #editor .slides-container .slides .slide {
+      #editor .slides .list .slide {
         margin: 10px;
         width: 96px;
         height: 64px; }
-        #editor .slides-container .slides .slide:hover {
+        #editor .slides .list .slide:hover {
           opacity: 0.7;
           cursor: pointer; }
-        #editor .slides-container .slides .slide .edit {
+        #editor .slides .list .slide .edit {
           display: none; }
-          #editor .slides-container .slides .slide .edit:hover {
+          #editor .slides .list .slide .edit:hover {
             display: none; }

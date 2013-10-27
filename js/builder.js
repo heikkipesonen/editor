@@ -58,7 +58,7 @@ var builder = {
 		}
 	},
 	init:function(container){
-		this.toolbar = new toolbar(this,this.tools);
+		this.toolbar = new toolbar(this.tools);
 		this.presentation = new presentation();
 		this.window = this.presentation.getElement();
 
@@ -79,7 +79,7 @@ var builder = {
 			c.add('video');
 			c.add('form');
 
-		//c.edit();
+		c.edit();
 	}
 }
 

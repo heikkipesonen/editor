@@ -81,7 +81,7 @@
 
 
 */
-function toolbar(parent,data){
+function toolbar(data,parent){
 	this._id = getId();
 	this._parent = parent;
 	this._events = new events(this);
@@ -211,7 +211,7 @@ toolbar.prototype = {
 		this._submenus[parent_id].add(data);
 	},
 	addSubmenu:function(id){
-		this._submenus[id] = new toolbar(this);		
+		this._submenus[id] = new toolbar(null,this);		
 		this._submenus[id].addHeader(id);
 		this._items[id].append(this._submenus[id].getElement()).addClass('has-submenu');
 	},
