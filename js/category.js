@@ -3,19 +3,10 @@ function category(presentation){
 	this._presentation = presentation;
 	this._id = getId();
 
-	// html elements
-	this._element = $('<div type="category" class="category" draggable="true"></div>');
-	this._slidecontainer = $('<div class="slides"></div>');
-	this._delete = $('<div class="delete"></div>');
-	this._edit = $('<div class="edit"></div>');
-	this._title = $('<div class="title"><input type="text" class="title-input" placeholder="'+this._id+'"/></div>');
-
-	this._element.append(this._delete).append(this._edit).append(this._title).append(this._slidecontainer);
-	// contained slides
+	this._element = getTemplate('category');
+console.log(this._element)
 	this._slides = [];
-
 	this._name = false;
-
 	this._init();
 }
 
@@ -65,16 +56,16 @@ category.prototype = {
 			},
 		}
 
-		this._element[0].addEventListener('drop',this._fn.drop);
-		this._element[0].addEventListener('dragover',this._fn.dragover);
-		this._element[0].addEventListener('dragleave',this._fn.dragleave);
-		this._element[0].addEventListener('dragstart',this._fn.dragstart);
+		this._element.container[0].addEventListener('drop',this._fn.drop);
+		this._element.container[0].addEventListener('dragover',this._fn.dragover);
+		this._element.container[0].addEventListener('dragleave',this._fn.dragleave);
+		this._element.container[0].addEventListener('dragstart',this._fn.dragstart);
 
-		this._delete.click(function(){
+		this._element.delete.click(function(){
 			me.remove();
 		});
 
-		this._edit.click(function(){
+		this._element.edit.click(function(){
 			me.edit();
 		});
 
@@ -85,7 +76,6 @@ category.prototype = {
 			me= this;
 
 		e.show();
-
 	},
 	getId:function(){
 		return this._id;
@@ -102,7 +92,7 @@ category.prototype = {
 		var d = {
 			type:'category',
 			id:this._id,
-			name:this._title.find('input').val(),
+			name:this._element.title.find('input').val(),
 			content:content
 		}
 
@@ -119,7 +109,7 @@ category.prototype = {
 		}
 	},
 	setTile:function(title){
-		this._title.find('h2').text(title);
+		this._element.title.find('h2').text(title);
 	},
 	remove:function(){
 		this._element[0].removeEventListener('drop',this._fn.drop);
@@ -128,7 +118,7 @@ category.prototype = {
 		this.fire('change','remove',this)
 	},
 	getElement:function(){
-		return this._element;
+		return this._element.container;
 	},
 	getSlide:function(id){
 		for (var i in this._slides){
@@ -141,7 +131,7 @@ category.prototype = {
 	showSlides:function(){
 		var me = this;
 		this.each(function(){
-			me._slidecontainer.append(this.getElement());
+			me._element.slidecontainer.append(this.getElement());
 		});
 	},
 	add:function(type,before){
@@ -149,7 +139,7 @@ category.prototype = {
 			s = new slide(type, this);
 
 		this._slides.push(s);
-		this._slidecontainer.append(s.getElement());
+		this._element.slidecontainer.append(s.getElement());
 
 		s.on('remove',function(){
 			me.removeSlide(s)

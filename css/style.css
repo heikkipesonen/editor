@@ -116,7 +116,7 @@ input {
   .delete:hover {
     background-color: #fff; }
 
-.animate, input, ul.toolbar, .menu-button, ul.toolbar li, .category, .category .slides, .slide .info input, #editor .slides-container .slides .slide {
+.animate, input, ul.toolbar, .menu-button, ul.toolbar li, .category, .category .slidecontainer, .slide .info input, #editor .slides-container .slides .slide {
   -webkit-transition-duration: 0.2s;
   -moz-transition-duration: 0.2s;
   -ms-transition-duration: 0.2s;
@@ -229,8 +229,7 @@ ul.toolbar {
   top: 0px;
   height: 100%;
   overflow-y: scroll;
-  background-color: #373853;
-  background-image: url("../img/mooning.png"); }
+  background-color: white; }
   .presentation .categories {
     z-index: 0;
     position: relative;
@@ -240,7 +239,7 @@ ul.toolbar {
   .presentation .header {
     position: relative;
     height: 20%;
-    background-color: white; }
+    background-color: #d8d8d8; }
     .presentation .header input {
       position: absolute;
       width: 50%;
@@ -250,7 +249,7 @@ ul.toolbar {
       text-align: center;
       padding: 10px;
       font-size: 20pt;
-      border-bottom: 2px dashed #373853;
+      border-bottom: 2px dashed white;
       color: #222; }
     .presentation .header:after {
       z-index: 1;
@@ -259,13 +258,13 @@ ul.toolbar {
       left: 50%;
       bottom: -15px;
       margin-left: -16px;
-      border-top: 16px solid white;
+      border-top: 16px solid #d8d8d8;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent; }
   .presentation .footer {
     position: relative;
     height: 20%;
-    background-color: white; }
+    background-color: #d8d8d8; }
     .presentation .footer:after {
       z-index: 1;
       content: " ";
@@ -273,7 +272,7 @@ ul.toolbar {
       left: 50%;
       top: -15px;
       margin-left: -16px;
-      border-bottom: 16px solid white;
+      border-bottom: 16px solid #d8d8d8;
       border-left: 16px solid transparent;
       border-right: 16px solid transparent; }
 
@@ -293,14 +292,14 @@ ul.toolbar {
     float: left;
     height: 100%;
     width: 20%;
-    background-color: #2c2c2c; }
+    background-color: #d8d8d8; }
     .category .title:after {
       content: " ";
       position: absolute;
       right: -16px;
       top: 50%;
       margin-top: -16px;
-      border-left: 16px solid #2c2c2c;
+      border-left: 16px solid #d8d8d8;
       border-top: 16px solid transparent;
       border-bottom: 16px solid transparent; }
   .category > .edit {
@@ -314,12 +313,12 @@ ul.toolbar {
       opacity: 0.7; }
     .category.dragover .slide-scroller {
       opacity: 0.7; }
-  .category .slides {
+  .category .slidecontainer {
     position: relative;
     display: inline-block;
     width: 77%;
     left: 23%; }
-    .category .slides .before {
+    .category .slidecontainer .before {
       display: inline-block;
       display: none;
       width: 10px; }
@@ -367,7 +366,7 @@ ul.toolbar {
     height: 40px;
     background-color: rgba(255, 255, 255, 0.7); }
     .slide .info input {
-      color: #2c2c2c;
+      color: #2d2d2d;
       font-size: 10pt;
       width: 100%;
       height: 100%;

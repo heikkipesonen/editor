@@ -1,0 +1,72 @@
+<!---
+
+	templates
+
+		these are templates for builder items, like slides, categories and so on.
+
+		functions.js > getTemplate reads this file and a 
+		template is selected by its "template" attribute.
+
+		getTemplate splits the template into separate elements (the first level only)
+
+		so the returned element is formed like:
+
+		element : {
+			container: root-element,
+			childrens-first-class-attribute: children-element,
+			children-first-class-attribute: children-element,
+			children-first-class-attribute: children-element,
+			...
+		}
+
+		so
+
+		<div template="slide" class="slide">
+			<div class="edit class2 class3 class4"></div>
+			<div class="delete class2 class3 class4"></div>
+			
+			<div class="info">
+				<input type="text" class="name-input"/>
+			</div>
+		</div>
+
+		translates to:
+
+		{
+			container:<div template="slide" class="slide"></div>,  // actually the whole template is here
+			edit:<div class="edit class2 class3 class4"></div>,
+			delete:<div class="delete class2 class3 class4"></div>,
+			info: <div class="info"><input type="text" class="name-input"/></div>,
+		}
+	
+-->
+
+<div template="presentation" class="presentation" droppable="true">			
+	<div class="header">
+		<div class="slide"></div>	
+		<input type="text" placeholder="presentation name"/>				
+	</div>
+	<div class="categories"></div>
+	<div class="footer"></div>
+</div>
+
+
+<div template="slide" class="slide">
+	<div class="edit"></div>
+	<div class="delete"></div>
+	
+	<div class="info">
+		<input type="text" class="name-input"/>
+	</div>
+</div>
+
+
+<div template="category" type="category" class="category" draggable="true">
+	<div class="delete"></div>
+	<div class="edit"></div>
+	<div class="title"><input type="text" class="title-input" placeholder="category"/></div>		
+	<div class="slidecontainer"></div>
+</div>
+
+
+

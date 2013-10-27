@@ -1,11 +1,18 @@
 function slide(type,parent){
     this._events = new events(this);
 
-    this._slide = $('<div class="slide"></div>');
-        this._info = $('<div class="info"><input type="text" class="name-input"/></div>');
-        this._delete = $('<div class="delete"></div>');
-        this._edit = $('<div class="edit"></div>');
-    
+    this._slide = getTemplate('slide');
+    /*
+        this._slide.info = this._slide.container.find('.info');
+        this._slide.delete = this._slide.container.find('.delete');
+        this._slide.edit = this._slide.container.find('.edit');
+    this._slide.container = $('<div class="slide"></div>');
+        this._slide.info = $('<div class="info"><input type="text" class="name-input"/></div>');
+        this._slide.delete = $('<div class="delete"></div>');
+        this._slide.edit = $('<div class="edit"></div>');
+    */
+
+
     if (typeof(type) == 'object'){
         this.load(type);
     } else {
@@ -14,15 +21,15 @@ function slide(type,parent){
     }
 
     this._parent = parent || false;    
-    this._info.find('input').val(this._id);
+    this._slide.info.find('input').val(this._id);
 
 
     if (this._type){
-        this._slide.addClass(this._type);
+        this._slide.container.addClass(this._type);
     }
 
-    this._slide.attr('id',this._id);
-    this._slide.append(this._delete).append(this._edit).append(this._info);
+    this._slide.container.attr('id',this._id);
+    //this._slide.container.append(this._slide.delete).append(this._slide.edit).append(this._slide.info);
     
     this._children = [];
     this._content = [];
@@ -34,11 +41,11 @@ slide.prototype = {
     _init:function(){
         var me = this;
 
-        this._delete.click(function(){me.remove()});
-        this._edit.click(function(){me.fire('edit')});
+        this._slide.delete.click(function(){me.remove()});
+        this._slide.edit.click(function(){me.fire('edit')});
     },    
     getWidth:function(){
-        return this._slide.outerWidth(true);
+        return this._slide.container.outerWidth(true);
     },
     clone:function(){
     
@@ -53,16 +60,16 @@ slide.prototype = {
     _drop:function(e){
         /*
         if (e.dataTransfer.getData('type') == 'slide'){            
-            if (this._container != this._slide){
+            if (this._container != this._slide.container){
                 this.addChild(e.dataTransfer.getData('slide_type'),e.dataTransfer.getData('slide_cols'));
             } else {
                 this._container = $('<div class="slide-container""></div>');
-                var p = this._slide.parent();
-                this._slide.replaceWith(this._container);
-                this._container.append(this._slide);
+                var p = this._slide.container.parent();
+                this._slide.container.replaceWith(this._container);
+                this._container.append(this._slide.container);
                 this.addChild(e.dataTransfer.getData('slide_type'),e.dataTransfer.getData('slide_cols'));
 
-                this._slideDrop.remove();
+                this._slide.containerDrop.remove();
                 this._container[0].removeEventListener('dragstart',this._fn.dragstart);
                 this._init();
             }
@@ -79,10 +86,10 @@ slide.prototype = {
 
         
         for (var i=0;i<count; i++){
-            this._slide.append('<div class="col"></div>');
+            this._slide.container.append('<div class="col"></div>');
         }
 
-        this._slide.find('.col')
+        this._slide.container.find('.col')
             .css('margin-left','5%')
             .css('width',colWidth-5 +'%')
             .first().css('margin-left','10%');
@@ -99,7 +106,7 @@ slide.prototype = {
                 var el = new Image();
                 el.src = content.data;
 
-                this._slide.append( el );
+                this._slide.container.append( el );
             }            
 
             this._content.push({col:column,content:content});
@@ -145,8 +152,8 @@ slide.prototype = {
         this.fire('remove',this);
         this.fire('change','remove');
         
-        //this._slideDrop.remove();
-        this._slide.remove();
+        //this._slide.containerDrop.remove();
+        this._slide.container.remove();
         //this._container[0].removeEventListener('dragstart',this._fn.dragstart);
         //this._container.remove();
     },
@@ -165,7 +172,7 @@ slide.prototype = {
         }
     },
     getElement:function(){
-        return this._slide;
+        return this._slide.container;
     },
     getColumns:function(){
         return this._columns;

@@ -12,3 +12,25 @@ function getId() {
     var uuid = s.join("");
     return uuid;
 }
+
+
+var templates = $('<div></div>');
+templates.load('templates/templates.html');
+
+
+function getTemplate(selector){
+    var t = templates.find('[template='+selector+']').clone();
+    t.removeAttr('template');
+
+    var e = {
+        container : t
+    }
+    
+    t.children().each(function(){
+        var fclass = $(this).attr('class').split(' ')[0];
+        e[fclass] = $(this);
+    })
+
+    return e;
+}
+

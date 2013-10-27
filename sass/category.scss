@@ -30,6 +30,7 @@
 			border-top: 16px solid transparent;
 			border-bottom: 16px solid transparent;
 		}
+
 	}
 
 	>.edit{
@@ -55,13 +56,12 @@
 		}
 	}
 
-	.slides{
+	.slidecontainer{
 		@extend .animate;
 		position:relative;
 		display:inline-block;
 		width: 77%;
 		left: 23%;
-
 		.before{
 			display:inline-block;
 			display: none;

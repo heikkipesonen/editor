@@ -7,15 +7,14 @@ function presentation(){
 		name:false		
 	}
 
-	this._element = $('<div class="presentation" droppable="true"></div>');
-		this._header = $('<div class="header"></div>');
-		this._nameinput = $('<input type="text" placeholder="'+this._id+'"/>');
-		this._categorylist = $('<div class="categories"></div>');
-		this._footer = $('<div class="footer"></div>');
+	this._element = getTemplate('presentation');
+		/*
+		this._header = this._element.find('.header');
+		this._nameinput =this._header.find('input');
+		this._categorylist = this._element.find('.categories');
+		this._footer = this._element.find('.footer');
+		*/
 
-	this._element.append(this._header.append(this._nameinput))
-				.append(this._categorylist)
-				.append(this._footer);
 	this._init();
 }
 
@@ -29,12 +28,12 @@ presentation.prototype = {
 			}
 		}
 
-		this._element[0].addEventListener('dragover',function(e){
+		this._element.container[0].addEventListener('dragover',function(e){
 			e.preventDefault();
 			e.stopPropagation();
 		});
 
-		this._element[0].addEventListener('drop',this._fn.drop);
+		this._element.container[0].addEventListener('drop',this._fn.drop);
 	},
 	drop:function(evt){
 		if (evt.dataTransfer.getData('action') =='add'){
@@ -45,14 +44,14 @@ presentation.prototype = {
 		}
 	},
 	getElement:function(){
-		return this._element;
+		return this._element.container;
 	},
 	add:function(){
 		var c = new category(this),
 			me = this;
 
 		this._categories.push( c );
-		this._categorylist.append( c.getElement() );
+		this._element.categories.append( c.getElement() );
 		
 		c.on('remove',function(){			
 			me.remove(this);

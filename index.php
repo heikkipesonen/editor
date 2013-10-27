@@ -48,7 +48,8 @@
 
 	</head>
 	<script type="text/javascript">
-		$(function(){
+
+		$(function(){	
 			builder.init('#wrapper');
 		});
 	</script>
