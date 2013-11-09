@@ -1,8 +1,9 @@
 $slide-info	: rgba(255,255,255,0.7);
 
-$category-bg 	: #529396;
+$category-bg 	: #fff;
 
-$slide 		: rgba(255,255,255,0.3);
+$slide 		: #fff;
+$slide-hover : rgb(114, 197, 223);
 $presentation_bg : #fff;
 $header_bg : rgba(255,255,255,0.9);
 
@@ -12,5 +13,5 @@ $toolbar-button-color: 	lighten($toolbar-bg, 5%);
 $toolbar-button-hover:#5A7FAF;
 
 
-$category-title : #f7f7f7;
+$category-title : darken($category-bg,5%);
 

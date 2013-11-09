@@ -42,8 +42,10 @@ slide.prototype = {
     },
     _init:function(){
         var me = this;
-        this._slide.delete.unbind().bind('click',function(){me.remove()});
-        this._slide.edit.unbind().bind('click',function(){BUILDER.edit(me)});        
+        this._slide.container.bind('click',function(){BUILDER.edit(me)});
+        this._slide.container.bind('contextmenu',function(e){e.preventDefault(); me.remove()});
+        //this._slide.delete.unbind().bind('click',function(){me.remove()});
+        //this._slide.edit.unbind().bind('click',function(){BUILDER.edit(me)});        
     }, 
     getColumns:function(){
         return this._columns;

@@ -9,18 +9,21 @@
 */
 
 	.slide{
+		@extend .shadow-hover;
 		position:relative;
 		width: 128px;
 		height: 96px;
 		display:inline-block;
 		vertical-align: top;
-		margin: 2px;		
+		margin: 4px;		
 		margin-bottom: 45px;
 		background-color: $slide;
 		
 		background-size: 20%;
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
+
+		cursor: pointer;
 
 			&.video{
 				background-image: url(../img/video.png);
@@ -37,6 +40,7 @@
 
 
 		&:hover{
+			background-color: $slide-hover;
 			>.delete, >.edit{
 				opacity:1;				
 			}

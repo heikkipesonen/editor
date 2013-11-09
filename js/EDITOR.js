@@ -5,100 +5,12 @@
 		which edits actually the categories
 
 */
-var EDITOR = {
+
+BUILDER.editor = {
 	_events : {},
 	_element : {},
 	_category : false,
-	_tools : {
-		content:{
-			text:'content',
-			icon:'img/add.png',
-			description:'add content to slide',
-			submenu:{
-				col:{
-					text:'column',
-					description:'add new column',
-					icon:'img/paper.png',
-					draggable:true,
-					data:{
-						action:'addColumn',
-						type:1
-					}
-				},				
-				header:{
-					text:'header',
-					description:'large header text',
-					icon:'img/paper.png',
-					draggable:true,
-					data:{
-						action:'addContent',
-						type:'content',
-						tag:'h2'
-					}
-				},
-				text:{
-					text:'text',
-					description:'text container',
-					icon:'img/paper.png',
-					draggable:true,
-					data:{
-						action:'addContent',
-						type:'content',
-						tag:'p'
-					}
-				},
-				image:{
-					text:'image',
-					description:'picture',
-					icon:'img/camera.png',
-					draggable:true,
-					data:{
-						action:'addContent',
-						type:'content',
-						tag:'img'
-					}				
-				},
-				video:{
-					text:'video',
-					description:'small video',
-					icon:'img/video.png',
-					draggable:true,
-				},
-				hotspot:{
-					text:'hotspot',
-					description:'clickable hotspot',
-					icon:'img/hotspot.png',
-					draggable:true,
-				},
-				form:{
-					text:'form',
-					description:'input form',
-					icon:'img/form.png',
-					draggable:true,
-				},
-			}
-		},
-		properties:{
-			text:'properties',
-			description:'slide settings',
-			icon:'img/gear-white.png',
-			submenu:{				
-				background:{
-					text:'background',
-					description:'background image',
-					icon:'img/camera.png',
-					draggable:false,
-					data:{}
-				},
-			}
-		},
-		close:{
-			text:'back',
-			class:['back'],
-			description:'save and return',
-			icon:'img/arrow-left.png',
-		}	
-	},
+
 	init:function(){
 		var me = this;
 		this._events = new events(this);
@@ -112,14 +24,12 @@ var EDITOR = {
 			me.close();
 		});
 
+		this._toolbar.on('save',function(){
+			console.log( me.getData() );
+		})
+
 		this._element.container.append(this._toolbar.getElement());
 		
-
-
-		/*
-					bind on events
-		*/
-
 		// slidewindow binded to drop events, so items can be deleted
 		// when they are dropdded here
 		this._element.slidewindow.bind('dragover',function(e){
@@ -129,9 +39,9 @@ var EDITOR = {
 		this._element.slidewindow.bind('drop',function(e){
 			e.preventDefault();
 			e.stopPropagation();
-			e = e.originalEvent;
+			e = e.originalEvent;			
 			if (e.dataTransfer.getData('action') == 'move'){
-				EDITOR.removeContent(e.dataTransfer.getData('id'));
+				me.removeContent(e.dataTransfer.getData('id'));
 			}
 		});
 
@@ -142,10 +52,10 @@ var EDITOR = {
 			e.stopPropagation();
 			e = e.originalEvent;
 
-			if (EDITOR[e.dataTransfer.getData('action')] ){
-				EDITOR[e.dataTransfer.getData('action')]( e.dataTransfer.getData('type') );
+			if (me[e.dataTransfer.getData('action')] ){
+				me[e.dataTransfer.getData('action')]( e.dataTransfer.getData('type') );
 			} else if (e.dataTransfer.getData('type') == 'content'){
-				EDITOR.addColumn().onDrop(e);
+				me.addColumn().onDrop(e);
 			}
 		});
 
@@ -154,31 +64,30 @@ var EDITOR = {
 		});
 
 		this._element.editslide.on('click','.column .delete',function(){
-			EDITOR._slide.removeColumn($(this).parent().attr('id'));
-			var col = EDITOR.setColumns();
+			me._slide.removeColumn($(this).parent().attr('id'));
+			var col = me.setColumns();
 		});
+	},
+	getData:function(){
+		return this._category.getData();
 	},
 	removeContent:function(id){		
 		var result = this._slide.removeContent(id);
-		if (result instanceof column){
-			this.setColumns();
+		if (result instanceof column){			
+			this.setColumns(true);
 		}
 	},
-	setColumns:function(column){
-		if (!column){		
+	setColumns:function(col){
+		if (!col){		
 			this._element.editslide.empty();
-
 			if (this._slide){
-
-				var cols = this._slide.getColumns();
-				
+				var cols = this._slide.getColumns();				
 				for (var i in cols){
 					cols[i].addTo(this._element.editslide);
 				}
-			}
-			
-		} else {
-			column.addTo(this._element.editslide);
+			}			
+		} else if (col instanceof column){
+			col.addTo(this._element.editslide);
 		}
 
 		var cols = this._element.editslide.find('.column');
@@ -213,17 +122,19 @@ var EDITOR = {
 	setCategory:function(category){
 		this._category = category;
 		this._element.list.empty();
-
+		var me = this;
 		this._category.each(function(){
-			BUILDER.editor._element.list.append( '<div class="slide preview" id="'+this._id+'"></div>');
+			me._element.list.append( '<div class="slide preview" id="'+this._id+'"></div>');
 		});
 
-		this._element.list.find('.slide').bind('click',function(){EDITOR.setSlide($(this).attr('id'))});		
+		this._element.list.find('.slide').bind('click',function(){me.setSlide($(this).attr('id'))});		
 	},
 	setSlide:function(slide){				
 		if (typeof(slide) == 'string'){
 			slide = this._category.getSlide(slide);
 		}
+		this._element.list.find('.selected').removeClass('selected');
+		this._element.list.find('#'+slide.getId()).addClass('selected');
 		this._slide = slide;
 		this.setColumns();		
 	},
@@ -235,8 +146,6 @@ var EDITOR = {
 		return w;		
 	},
 	show:function(){		
-		//if ()
-		//$('body').append(this._element.container);
 		this._element.container.removeClass('hidden-right');
 		this._element.slides.find('.list').css('width',this.getSlidesWidth()+10);
 	},

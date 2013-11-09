@@ -45,13 +45,12 @@
 
 <div template="editor" id="editor">	
 
-
 	<div class="slides">
 		<div class="list"></div>		
 	</div>
 
 	<div id="slidewindow" droppable="true" class="slidewindow">
-		<div class="editslide slide" droppable="true"></div>
+		<div class="editslide" droppable="true"></div>
 	</div>
 
 
@@ -75,9 +74,10 @@
 
 
 <div template="slide" class="slide">
+	<!--
 	<div class="edit"></div>
 	<div class="delete"></div>
-	
+	-->
 	<div class="info">
 		<input type="text" class="name-input"/>
 	</div>
@@ -87,11 +87,12 @@
 <div template="category" class="category" draggable="false">
 	<div class="title">
 		<input type="text" class="title-input" placeholder="category"/>
-		
+		<!--
 		<div class="button-container">
 			<div class="delete"></div>
 			<div class="edit"></div>
 		</div>
+		-->
 	</div>		
 	<div class="slidecontainer"></div>
 </div>

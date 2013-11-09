@@ -108,16 +108,25 @@ div:hover > .edit,div:hover > .delete{
 
 .animatewindow{
 	@include prefix('transition-duration','0.4s');
-	@include prefix('transition-timinf-function','ease-in-out');
+	@include prefix('transition-timinf-function','ease-out');
 }
 
 .animate{
 	@include prefix('transition-duration','0.2s');
-	@include prefix('transition-timinf-function','ease-in-out');
+	@include prefix('transition-timinf-function','ease-out');
 }
 
 .shadow{
 	@include prefix('box-shadow','0px 0px 20px 0px rgba(0,0,0,0.3)' );
+}
+
+.shadow-hover{
+	@include prefix('transition-duration','0.3s');
+	@include prefix('box-shadow','0px 0px 10px 0px rgba(0,0,0,0.3)' );
+
+	&:hover{
+		@include prefix('box-shadow','0px 0px 30px 0px rgba(0,0,0,0.3)' );
+	}
 }
 
 .hidden-right{
@@ -128,4 +137,12 @@ div:hover > .edit,div:hover > .delete{
 .hidden-left{
 	right: 100% !important;
 	left: -100% !important;
+}
+
+.full-width{
+	width: 100%;
+}
+
+.full-height{
+	height: 100%;
 }

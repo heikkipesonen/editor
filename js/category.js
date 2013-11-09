@@ -44,6 +44,7 @@ category.prototype = {
 
 
 		var me = this;
+		/*
 		this._element.delete.unbind().bind('click',function(){
 			me.remove();
 		});
@@ -51,6 +52,10 @@ category.prototype = {
 		this._element.edit.unbind().bind('click',function(){
 			me.edit();
 		});
+		*/
+
+		this._element.title.bind('click',function(){me.edit()}).bind('contextmenu',function(e){e.preventDefault(); me.remove()});
+
 	},
 	dragleave:function(e){
 		if (this._element.container.hasClass('dragover')){

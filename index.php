@@ -6,12 +6,52 @@
 	
 
 <?php
+	$dev = true;
+
+
+
+	function getFolder($root){		
+		$root_folder = scandir($root);
+		$files = array();
+		foreach ($root_folder as $key => $folder) {
+			if ($folder != '..' && $folder != '.'){
+				if (is_dir($folder)){
+					$subfolder = getFolder($folder);
+					foreach ($subfolder as $key => $sf) {
+						if (!startsWith($sf,'.' )){
+							$files[] = $folder.'/'.$sf;
+						}
+					}
+				} else {
+					if (!startsWith($folder ,'.')){
+						$files[] = $folder;
+					}
+				}
+			}
+		}
+		return $files;
+	}
+
+	function startsWith($haystack, $needle)
+	{
+	    return $needle === "" || strpos($haystack, $needle) === 0;
+	}
+
 	function addCss($filename){
 		echo '<link rel="stylesheet" type="text/css" href="'.$filename.'">';
 	}
 
-	function addScript($filename){
-		echo '<script type="text/javascript" src="'.$filename.'"></script>';
+	function addScripts($scripts){
+		global $dev;
+		foreach ($scripts as $script){
+			if ($dev){
+				echo '<script type="text/javascript" src="'.$script.'"></script>';
+			} else {		
+				echo '<script type="text/javascript">';
+				include($script);
+				echo '</script>';
+			}
+		}
 	}
 
 	$scripts = array(
@@ -41,9 +81,6 @@
 	}
 
 
-	foreach ($scripts as $script){
-		addScript($script);
-	}
 
 	$templates = scandir('templates');
 	echo '<div style="display:none" id="templates">';
@@ -53,6 +90,8 @@
 		}
 	}
 	echo '</div>';
+
+	addScripts($scripts);
 ?>
 
 	</head>

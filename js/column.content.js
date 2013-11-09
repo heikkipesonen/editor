@@ -1,26 +1,27 @@
-function content(tag,content){
+function content(tag,contents){
 	this._tag = tag;
-	this._id = getId();
-	this._element = $('<div id="'+this._id+'" class="content" draggable=true></div>');
-	this._container = $('<div tag="'+tag+'" contenteditable=true />');
-	
-	console.log(tag)
-	this._element.append(this._container);//.append('<div class="delete"></div>');
-	
-	if (content){
-		this._content = content;
-		this._element.html(content);
-	}	
-
-	if (tag == 'img'){
-		this.droppable();
-	}
-
-	this.reset();
-	this._content = false;
+	this._content = contents;
 }
 
 content.prototype = {
+	init:function(){
+		this._id = getId();
+		this._element = $('<div id="'+this._id+'" class="content" draggable=true></div>');
+		this._container = $('<div tag="'+this._tag+'" contenteditable=true />');	
+		
+		this._element.append(this._container);//.append('<div class="delete"></div>');
+		
+		if (this._content){
+			this._element.html(this._contents);
+		}	
+
+		if (this._tag == 'img'){
+			this.droppable();
+		}
+
+		this.reset();
+		this._content = false;
+	},
 	reset:function(){
 		this._element.unbind();
 		var me = this;
@@ -32,11 +33,11 @@ content.prototype = {
 			e.dataTransfer.setData('action','move');
 		});
 	},
-	getData:function(){
-		
+	getData:function(){		
 		if (this._tag != 'img'){
 			this._content = {
-					type: text,
+					type: 'text',
+					tag: this._tag,
 					text: this._container.html() 
 				};
 		} 
@@ -45,18 +46,17 @@ content.prototype = {
 	},
 	droppable:function(e){
 		var me = this;
-		this._element.dropInput(function(e){
-	
+		this._container.attr('contenteditable','false');
+		this._element.dropInput(function(e){	
 			var i = e[0];
 			if (i.datatype == 'image'){
 				me.setImage(i);
 			}
-
 		});
 	},
 	setImage:function(e){
 		this._content = e;
-		this._element.find('[tag="'+this._tag+'"]').html('<img src="'+e.data+'" />');
+		this._element.find('[tag="'+this._tag+'"]').html('<img class="full-width" src="'+e.data+'" />');
 	},
 	getOriginalElement:function(){
 		return this._element[0];
@@ -64,4 +64,29 @@ content.prototype = {
 	remove:function(){
 		this._element.remove();
 	}
+}
+
+
+function headerContent(contents){
+	content.call(this);
+}
+
+headerContent.prototype = new content();
+
+
+
+
+function imageContent(tag,contents){
+	content.call(this);
+	this._tag = tag;
+	this._content = contents;	
+
+	this.init();
+}
+
+imageContent.prototype = new content();
+
+imageContent.prototype.setImage = function(e){
+	this._content = e;
+	this._element.find('[tag="'+this._tag+'"]').html('<img class="full-width" src="'+e.data+'" />');
 }

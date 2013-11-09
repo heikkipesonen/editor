@@ -80,6 +80,7 @@ column.prototype =  {
 	},
 	add:function(content){		
 		this._content.push(content);
+		content.init();
 		this._element.container.append(content._element);
 	},
 	addContent:function(tag, contents){
