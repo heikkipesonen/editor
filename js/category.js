@@ -37,7 +37,7 @@ category.prototype = {
 					me.add(e.dataTransfer.getData('id'));
 				}
 
-				me._element.removeClass('dragover');
+				me._element.container.removeClass('dragover');
 			},
 			dragstart:function(e){								
 				e.stopPropagation();
@@ -111,8 +111,8 @@ category.prototype = {
 		this._element.title.find('h2').text(title);
 	},
 	remove:function(){
-		this._element[0].removeEventListener('drop',this._fn.drop);
-		this._element.remove();
+		this._element.container[0].removeEventListener('drop',this._fn.drop);
+		this._element.container.remove();
 		this.fire('remove',this);
 		this.fire('change','remove',this)
 	},

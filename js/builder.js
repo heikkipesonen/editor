@@ -78,8 +78,19 @@ var builder = {
 			c.add('col1');
 			c.add('video');
 			c.add('form');
+		var c = this.presentation.add();
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+			c.add('col1');
 
-		c.edit();
+		var c = this.presentation.add();
+			c.add('col1');
+			c.add('video');
+			c.add('form');
+			c.add('col1');
+
+		//c.edit();
 	}
 }
 

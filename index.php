@@ -17,6 +17,7 @@
 	$scripts = array(
 		"../src/jquery-2.0.0.min.js",
 		"../src/jquery.hammer.js",
+		"../src/handlebars-v1.1.2.js",
 		"../jq.extend/jq.extend.js",
 		"../events/events.js",
 		"../dropInput/dropInput.js"

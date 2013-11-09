@@ -1,21 +1,24 @@
 .category{
 	@extend .animate;
+
 	position: relative;	
-	width:98%;
-	margin:1%;
+
+	margin-top: 20px;
+	margin-bottom: 20px;
 	height: auto;
 	min-width: 700px;
 	/*border: 2px dashed rgba(255,255,255,0.3);*/
 	border-radius: 3px;
-	min-height: 172px;
+	min-height: 143px;
 	background-color: $category-bg;
 
-	.title{			
+		@extend .shadow;
+	.title{
 		vertical-align: top;
 		position:absolute;
 		float:left;
 		height: 100%;
-		width: 20%;
+		width: 274px;
 		background-color: $category-title;
 
 		&:after{
@@ -64,9 +67,10 @@
 	.slidecontainer{
 		@extend .animate;
 		position:relative;
-		display:inline-block;
-		width: 77%;
-		left: 23%;
+		display:block;
+		left: 294px;
+		margin-right:304px;
+
 		.before{
 			display:inline-block;
 			display: none;

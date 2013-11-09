@@ -8,26 +8,28 @@
 	left:96px;
 	right:0px;
 	top:0px;
-
 	height: 100%;
 	overflow-y: scroll;
 
 	background-color: $presentation_bg;
-	background-image: url('../img/notebook.png');
 
 	.categories{
 		z-index:0;
 		position:relative;
-		padding-top: 34px;
-		padding-bottom: 34px;
 		min-height:60%;
+		width: 100%;
+		overflow:hidden;
 	}
 
-	.header{
+	.header, .footer{
+		
+		@include prefix('box-shadow','0px 0px 60px 0px rgba(0,0,0,0.5)' );
 		position:relative;
-		height: 20%;
+		height: 254px;
 		background-color: $header_bg;
 
+		padding:20px;
+		
 		input{
 			position:absolute;
 			width: 50%;
@@ -37,9 +39,13 @@
 			text-align:center;
 			padding:10px;
 			font-size:20pt;
-			border-bottom: 2px dashed $presentation_bg;
+
 			color:#222;
 		}
+	}	
+
+	.header{
+
 
 		&:after{
 			z-index:1;
@@ -57,9 +63,6 @@
 
 
 	.footer{
-		position:relative;
-		height: 20%;
-		background-color: $header_bg;
 
 		&:after{
 			z-index:1;

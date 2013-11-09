@@ -6,11 +6,10 @@
 	width:100%;
 	height:100%;	
 	z-index:10;
-
-	background-image:url('../img/brushed.png');
+	background-color: $presentation-bg;
 
 	.slide{
-		background: #fff;
+		
 		border: 1px dashed #2d2d2d;
 	}
 
@@ -56,6 +55,7 @@
 			left:0px;
 			top:0px;
 			height:100%;
+			background-color: $category-bg;
 
 			.slide{
 				@extend .animate;
