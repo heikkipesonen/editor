@@ -37,6 +37,30 @@
 		>input{
 			color: invert($category-title);
 		}
+
+		
+		.button-container{
+			position: absolute;
+			bottom:10px;
+			left:10%;
+			width: 80%;			
+			height: 48px;
+			text-align: center;
+
+		}
+
+		.delete, .edit{
+			position: relative;
+			display: inline-block;
+			right: 0px;
+			left:0px;
+			top:0px;
+			bottom:0px;
+			opacity: 1;
+			width: 32px;
+			height: 32px;
+			margin: 0px;			
+		}
 	}
 
 

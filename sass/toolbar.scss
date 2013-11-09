@@ -3,8 +3,9 @@ $menu-wide: 192px;
 
 ul.toolbar{
 	@extend .shadow;
-
-	position:fixed;
+	@extend.animate;
+ 
+	position:absolute;
 	top:0px;
 	left:0px;
 	z-index:2;
@@ -45,9 +46,10 @@ ul.toolbar{
 		}
 
 		li{
-			position:relative !important;
+			position:relative;
 			width:100%;
 			text-align:left;
+			width: $menu-wide;
 			
 			img{
 				position:absolute;
@@ -75,8 +77,9 @@ ul.toolbar{
 				color: darken($toolbar-text,20%);
 			}
 
-			ul.submenu{		
+			ul.submenu{						
 				left:$menu-wide;
+				height: 100%;
 			}
 
 			&.submenu-visible{
@@ -99,6 +102,7 @@ ul.toolbar{
 		ul.submenu{
 			display:block;
 			overflow:hidden;
+			position: fixed;
 			z-index:10;
 			width:0px;
 			top:0px;
@@ -127,7 +131,7 @@ ul.toolbar{
 	@extend .animate;
 
 	cursor:pointer;
-	position:relative;
+	
 	height: $menu-width;
 	width: $menu-width;
 	text-align:center;

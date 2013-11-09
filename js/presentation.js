@@ -7,7 +7,7 @@ function presentation(){
 		name:false		
 	}
 
-	this._element = new getTemplate('presentation');
+	this._template = new getTemplate('presentation');
 	this._init();
 }
 
@@ -16,17 +16,18 @@ presentation.prototype = {
 		var me = this;
 		this._fn = {
 			drop:function(e){
+				e = e.originalEvent;
 				e.stopPropagation();
 				me.drop(e);
 			}
 		}
 
-		this._element.container[0].addEventListener('dragover',function(e){
+		this._template.container.bind('dragover',function(e){
 			e.preventDefault();
 			e.stopPropagation();
 		});
 
-		this._element.container[0].addEventListener('drop',this._fn.drop);
+		this._template.container.bind('drop',this._fn.drop);
 	},
 	drop:function(evt){
 		if (evt.dataTransfer.getData('action') =='add'){
@@ -37,14 +38,14 @@ presentation.prototype = {
 		}
 	},
 	getElement:function(){
-		return this._element.container;
+		return this._template.container;
 	},
 	add:function(){
 		var c = new category(this),
 			me = this;
 
 		this._categories.push( c );
-		this._element.categories.append( c.getElement() );
+		this._template.categories.append( c.getElement() );
 		
 		c.on('remove',function(){			
 			me.remove(this);

@@ -7,7 +7,7 @@
 		functions.js > getTemplate reads this file and a 
 		template is selected by its "template" attribute.
 
-		getTemplate splits the template into separate elements (the first level only)
+		getTemplate splits the template into separate elements
 
 		so the returned element is formed like:
 
@@ -50,12 +50,17 @@
 		<div class="list"></div>		
 	</div>
 
-	<div id="slidewindow" class="slidewindow">
-		<div class="slide"></div>
+	<div id="slidewindow" droppable="true" class="slidewindow">
+		<div class="editslide slide" droppable="true"></div>
 	</div>
 
 
 	<div class="properties"></div>
+</div>
+
+
+<div template="column" class="column" draggable="true" droppable="true">			
+	
 </div>
 
 
@@ -79,10 +84,15 @@
 </div>
 
 
-<div template="category" class="category" draggable="true">
-	<div class="delete"></div>
-	<div class="edit"></div>
-	<div class="title"><input type="text" class="title-input" placeholder="category"/></div>		
+<div template="category" class="category" draggable="false">
+	<div class="title">
+		<input type="text" class="title-input" placeholder="category"/>
+		
+		<div class="button-container">
+			<div class="delete"></div>
+			<div class="edit"></div>
+		</div>
+	</div>		
 	<div class="slidecontainer"></div>
 </div>
 

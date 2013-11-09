@@ -1,20 +1,13 @@
-var builder = {
+var BUILDER = {
 	toolbar: false,
 	presentation: false,
 	container:false,	
+	editor:false,
 	window:false,
 	tools:{
 		create:{
 			icon:'img/add.png',
 			submenu:{
-				/*
-				startslide:{
-					icon:'img/paper.png',
-					tooltip:'col 1',
-					draggable:true,
-					data:{type:'slide',action:'add'}
-				},
-				*/
 				col1:{
 					tooltip:'col 1',
 					icon:'img/paper.png',
@@ -57,6 +50,9 @@ var builder = {
 			icon:'img/trashcan.png'
 		}
 	},
+	edit:function(item){
+		this.editor.edit(item);
+	},
 	init:function(container){
 		this.toolbar = new toolbar(this.tools);
 		this.presentation = new presentation();
@@ -64,6 +60,8 @@ var builder = {
 
 		this.container = $(container);
 		this.container.append(this.window).append(this.toolbar.getElement());
+		this.editor = EDITOR;
+		this.editor.init();
 
 		var c = this.presentation.add();
 			c.add('col1');
@@ -78,6 +76,9 @@ var builder = {
 			c.add('col1');
 			c.add('video');
 			c.add('form');
+		
+		c.edit();
+		
 		var c = this.presentation.add();
 			c.add('col1');
 			c.add('video');
@@ -90,7 +91,6 @@ var builder = {
 			c.add('form');
 			c.add('col1');
 
-		//c.edit();
 	}
 }
 

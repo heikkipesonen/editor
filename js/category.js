@@ -6,6 +6,16 @@ function category(presentation){
 	this._element = getTemplate('category');
 	this._slides = [];
 	this._name = false;
+	
+	var me = this;
+	this.evt = function evt(e){		
+			if (me[e.type]){				
+				me[e.type].call(me,e);
+			} else {
+				console.log(e.type);
+			}
+		}
+
 	this._init();
 }
 
@@ -26,55 +36,56 @@ category.prototype = {
 		return this._slides;
 	},
 	_init:function(){
+		this._element.container.bind('drop',this.evt)
+								.bind('dragover',this.evt)
+								.bind('dragleave',this.evt)
+								.bind('dragstart',this.evt);
+
+
+
 		var me = this;
-		// event listener functions
-		this._fn = {
-			drop:function(e){
-				e.stopPropagation();
-				e.preventDefault(); 
-				
-				if (e.dataTransfer.getData('type') == 'slide'){				
-					me.add(e.dataTransfer.getData('id'));
-				}
-
-				me._element.container.removeClass('dragover');
-			},
-			dragstart:function(e){								
-				e.stopPropagation();
-
-				e.dataTransfer.setData('id',me.getId());
-				e.dataTransfer.setData('type','category');
-			},
-			dragover:function(){
-				if (!me._element.container.hasClass('dragover')){
-					me._element.container.addClass('dragover');
-				}
-			},
-			dragleave:function(){
-				me._element.container.removeClass('dragover');
-			},
-		}
-
-		this._element.container[0].addEventListener('drop',this._fn.drop);
-		this._element.container[0].addEventListener('dragover',this._fn.dragover);
-		this._element.container[0].addEventListener('dragleave',this._fn.dragleave);
-		this._element.container[0].addEventListener('dragstart',this._fn.dragstart);
-
-		this._element.delete.click(function(){
+		this._element.delete.unbind().bind('click',function(){
 			me.remove();
 		});
 
-		this._element.edit.click(function(){
+		this._element.edit.unbind().bind('click',function(){
 			me.edit();
 		});
-
-		//this.on('change',this.setWidth);
 	},
-	edit:function(slide){		
-		var e = new editor(this,slide),
-			me= this;
+	dragleave:function(e){
+		if (this._element.container.hasClass('dragover')){
+			this._element.container.removeClass('dragover');
+		}
+	},
+	dragover:function(e){
+		if (!this._element.container.hasClass('dragover')){
+			this._element.container.addClass('dragover');
+		}
+	},
+	dragstart:function(e) {
+		if (e.originalEvent){	
+			e = e.originalEvent;
+		}
+		e.stopPropagation();
+		e.dataTransfer.setData('id',this.getId());
+		e.dataTransfer.setData('type','category');
+	},
+	drop:function(e) {
+		if (e.originalEvent){	
+			e = e.originalEvent;
+		}
 
-		e.show();
+		e.stopPropagation();
+		e.preventDefault(); 
+		
+		if (e.dataTransfer.getData('type') == 'slide'){				
+			this.add(e.dataTransfer.getData('id'));
+		}
+
+		this._element.container.removeClass('dragover');
+	},
+	edit:function(){
+		BUILDER.edit(this);
 	},
 	getId:function(){
 		return this._id;
@@ -111,8 +122,7 @@ category.prototype = {
 		this._element.title.find('h2').text(title);
 	},
 	remove:function(){
-		this._element.container[0].removeEventListener('drop',this._fn.drop);
-		this._element.container.remove();
+		this._element.container.unbind().remove();
 		this.fire('remove',this);
 		this.fire('change','remove',this)
 	},
@@ -120,12 +130,15 @@ category.prototype = {
 		return this._element.container;
 	},
 	getSlide:function(id){
-		for (var i in this._slides){
-			if (this._slides[i].getId() == id){
-				return this._slides[i];	
+		if (id){		
+			for (var i in this._slides){
+				if (this._slides[i].getId() == id){
+					return this._slides[i];	
+				}
 			}
+			return false;
 		}
-		return false;
+		return this._slides[0];
 	},
 	showSlides:function(){
 		var me = this;
@@ -155,7 +168,7 @@ category.prototype = {
 		for (var i in this._slides){
 			if (this._slides[i] == slide){				
 				$('#before_'+this._slides[i].getId()).remove();
-				delete this._slides[i];				
+				this._slides.splice(i,1);
 			}
 		}
 

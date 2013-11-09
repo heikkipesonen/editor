@@ -1,15 +1,17 @@
 
 #editor{
+	@extend .animatewindow;
+	@extend .shadow;
+
 	position:absolute;
 	left:0%;
 	top:0%;
 	width:100%;
 	height:100%;	
 	z-index:10;
-	background-color: $presentation-bg;
+	background-color: $presentation-bg;	
 
-	.slide{
-		
+	.slide{		
 		border: 1px dashed #2d2d2d;
 	}
 
@@ -30,17 +32,8 @@
 			height:auto;
 			margin:0;
 			padding:0;
-
 		}
 	}
-
-	ul.toolbar{
-		li{
-			position: static;
-
-		}
-	}
-
 	.slides{
 		position:absolute;
 		bottom:0px;

@@ -13,30 +13,16 @@ function getId() {
     return uuid;
 }
 
+var GARBAGE = [];
 
-var templates = $('<div></div>');
-templates.load('templates/templates.html');
+var TEMPLATES = '';
+
+$(function(){
+    TEMPLATES = $('#templates');
+})
+//TEMPLATES.load('templates/templates.html');
 
 
-function getTemplate(selector){
-    var t = templates.find('[template='+selector+']').clone();
-    t.removeAttr('template');
-
-    var e = {
-        container : t
-    }
-    
-    t.children().each(function(){
-        var fclass = '';
-
-        if ($(this).attr('id')){
-            fclass = $(this).attr('id');
-        } else {
-            fclass = $(this).attr('class').split(' ')[0];
-        }
-        e[fclass] = $(this);
-    })
-
-    return e;
+function getTemplate(selector){    
+    return new template( TEMPLATES.find('[template='+selector+']').clone() );
 }
-

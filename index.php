@@ -16,8 +16,7 @@
 
 	$scripts = array(
 		"../src/jquery-2.0.0.min.js",
-		"../src/jquery.hammer.js",
-		"../src/handlebars-v1.1.2.js",
+		"../src/jquery.hammer.js",		
 		"../jq.extend/jq.extend.js",
 		"../events/events.js",
 		"../dropInput/dropInput.js"
@@ -45,13 +44,22 @@
 	foreach ($scripts as $script){
 		addScript($script);
 	}
+
+	$templates = scandir('templates');
+	echo '<div style="display:none" id="templates">';
+	foreach ($templates as $key => $value) {
+		if ($value != '.' && $value != '..'){
+			include('templates/'.$value);
+		}
+	}
+	echo '</div>';
 ?>
 
 	</head>
 	<script type="text/javascript">
 
 		$(function(){	
-			builder.init('#wrapper');
+			BUILDER.init('#wrapper');
 		});
 	</script>
 	<body>
