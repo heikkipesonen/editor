@@ -509,11 +509,11 @@ ul.toolbar {
         width: 96px;
         height: 64px; }
         #editor .slides .list .slide.selected {
-          background-color: white; }
+          background-color: #72c5df; }
         #editor .slides .list .slide:hover {
           opacity: 1;
           cursor: pointer;
-          background-color: #fff; }
+          background-color: rgba(114, 197, 223, 0.7); }
         #editor .slides .list .slide .edit {
           display: none; }
           #editor .slides .list .slide .edit:hover {
@@ -531,9 +531,24 @@ ul.toolbar {
   overflow-x: hidden;
   margin: 2.5%;
   border: 1px dashed #2d2d2d;
-  margin-left: 0; }
-  #editor .column:first-of-type {
-    margin-left: 3%; }
+  margin-left: 3%;
+  margin-right: 0%; }
+  #editor .column.block-column {
+    margin-bottom: 0%;
+    display: inline-block;
+    vertical-align: top;
+    width: 21%;
+    height: 21%;
+    overflow: hidden; }
+    #editor .column.block-column.width-2 {
+      width: 45%; }
+    #editor .column.block-column.height-2 {
+      height: 45%; }
+    #editor .column.block-column .content div {
+      overflow: hidden;
+      max-width: 94%;
+      max-height: 92%;
+      margin: 2%; }
   #editor .column .content {
     display: block; }
     #editor .column .content .delete {
@@ -546,14 +561,13 @@ ul.toolbar {
     #editor .column .content > div {
       position: relative;
       border: 1px dotted #2d2d2d;
-      padding: 1%; }
+      padding: 1%;
+      margin: 2%;
+      width: 94%; }
     #editor .column .content div[tag=h2] {
-      width: 94%;
       font-size: 30pt;
-      min-height: 30pt;
-      margin: 2%; }
+      min-height: 30pt; }
     #editor .column .content div[tag=p] {
-      width: 100%;
       font-size: 12pt;
       min-height: 128px;
       height: auto; }

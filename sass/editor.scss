@@ -60,13 +60,13 @@
 				height: 64px;
 
 				&.selected{
-					background-color:opacify($slide,1);
+					background-color: $slide-selected;
 				}
 
 				&:hover{
 					opacity:1;
 					cursor: pointer;
-					background-color: #fff;
+					background-color: fade_out($slide-selected,0.3);
 				}
 
 				.edit{

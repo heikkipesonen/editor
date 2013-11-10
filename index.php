@@ -32,9 +32,8 @@
 		return $files;
 	}
 
-	function startsWith($haystack, $needle)
-	{
-	    return $needle === "" || strpos($haystack, $needle) === 0;
+	function startsWith($haystack, $needle){
+	    return !strncmp($haystack, $needle, strlen($needle));
 	}
 
 	function addCss($filename){

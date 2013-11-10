@@ -50,8 +50,8 @@ slide.prototype = {
     getColumns:function(){
         return this._columns;
     },
-    addColumn:function(){
-        var c = new column(),
+    addColumn:function(type){
+        var c = new column(type),
             me = this;
 
         this._columns.push(c);                

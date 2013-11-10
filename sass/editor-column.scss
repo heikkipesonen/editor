@@ -13,10 +13,34 @@
 		overflow-x: hidden;
 		margin: 2.5%;
 		border: 1px dashed #2d2d2d;
-		margin-left: 0;
+		margin-left: 3%;
+		margin-right: 0%;
 
-		&:first-of-type{
-			margin-left: 3%;
+		&.block-column{
+			margin-bottom: 0%;
+			display: inline-block;
+			vertical-align: top;
+			width: 21%;
+			height: 21%;
+
+			overflow: hidden;
+
+			&.width-2{
+				width: 45%;
+			}
+
+			&.height-2{
+				height: 45%;
+			}
+
+			.content{
+				div{
+					overflow: hidden;
+					max-width: 94%;
+					max-height: 92%;
+					margin: 2%;
+				}
+			}
 		}
 
 		.content {
@@ -35,17 +59,16 @@
 				position: relative;;
 				border: 1px dotted #2d2d2d;
 				padding: 1%;
+				margin: 2%;
+				width: 94%;
 			}
 
 			div[tag=h2]{
-				width: 94%;
 				font-size: 30pt;
 				min-height: 30pt;
-				margin: 2%;
 			}
 
 			div[tag=p]{
-				width: 100%;
 				font-size: 12pt;
 				min-height: 128px;
 				height: auto;

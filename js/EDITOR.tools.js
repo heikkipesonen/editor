@@ -14,6 +14,16 @@ BUILDER.editor._tools = {
 					type:1
 				}
 			},				
+			block:{
+				text:'block',
+				description:'layout block',
+				icon:'img/paper.png',
+				draggable:true,
+				data:{
+					action:'addColumn',
+					type:2
+				}
+			},	
 			header:{
 				text:'header',
 				description:'large header text',

@@ -93,12 +93,14 @@ BUILDER.editor = {
 		var cols = this._element.editslide.find('.column');
 		
 		cols.each(function(){
-			$(this).css('width', (97/cols.length)-3 + '%');
+			if (!$(this).hasClass('block-column')){
+				$(this).css('width', (97/cols.length)-3 + '%');
+			}
 		});		
 	},
-	addColumn:function(e){
+	addColumn:function(type){
 		if (this._slide){
-			var c = this._slide.addColumn();
+			var c = this._slide.addColumn(type);
 			this.setColumns(c);
 			return c;
 		}
@@ -146,11 +148,11 @@ BUILDER.editor = {
 		return w;		
 	},
 	show:function(){		
-		this._element.container.removeClass('hidden-right');
+		this._element.container.removeClass('hidden-left');
 		this._element.slides.find('.list').css('width',this.getSlidesWidth()+10);
 	},
 	close:function(){		
-		this._element.container.addClass('hidden-right');
+		this._element.container.addClass('hidden-left');
 		this.fire('close');
 	}
 }

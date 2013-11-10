@@ -1,9 +1,19 @@
-function column(){
+function column(type){
 	this._content = [];
 	this._id = getId();
+	this._type = type;
 	this._element = getTemplate('column');
 	this._element.container.attr('id',this._id);
 
+
+	console.log(this._type);
+
+	if (this._type == 1){
+		this._element.container.addClass('vertical-column');
+	} else if (this._type == 2){
+		this._element.container.addClass('block-column');
+		this._element.container.addClass('width-2 height-2');
+	}
 }
 
 column.prototype =  {
@@ -15,6 +25,7 @@ column.prototype =  {
 
 		return {
 			id:this._id,
+			type:this._type,
 			content:d
 		};
 	},
